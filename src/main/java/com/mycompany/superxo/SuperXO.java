@@ -24,10 +24,10 @@ public class SuperXO {
     
     public void checkStart() {
         System.out.println("Welcome to XO Game");
-        System.out.print("Start XO Games? (Y/N)");
+        System.out.print("Start XO Games? (Y/N) : ");
         start = sc.nextLine().toLowerCase();
         if( !start.equals("y") && !start.equals("n")) {
-            System.out.print("Start XO Games? (Y/N)");
+            System.out.print("Start XO Games? (Y/N) : ");
             start = sc.nextLine().toLowerCase();
         }if( start.equals("n")) {
             confirm = false;
@@ -132,6 +132,16 @@ public class SuperXO {
         return true;
     }
 
+    public boolean checkNawnond() {
+        for (int j = 0; j < list[row - 1].length; j++) {
+            if (!list[row - 1][j].toLowerCase().equals(turn)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public void checkWin() {
         //check 3 style
         if (isEnd == false) {
@@ -151,7 +161,6 @@ public class SuperXO {
 
     public static void main(String[] args) {
         SuperXO project = new SuperXO();
-        System.out.println("com.mycompany.superxo.SuperXO.main()");
         project.turn = "x";
         project.checkStart();
         if(project.confirm == false) {
