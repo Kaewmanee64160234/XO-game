@@ -22,9 +22,19 @@ public class SuperXO {
 
     Scanner sc = new Scanner(System.in);
 
+    public void showTable(){
+            for (int i = 0; i < list.length; i++) {
+                for (int j = 0; j < list[i].length; j++) {
+                    System.out.print(" "+list[i][j] + " ");
+                }
+                System.out.println();
+            }
+}
+    
     public static void main(String[] args) {
          SuperXO project = new SuperXO();
-         System.out.println("com.mycompany.superxo.SuperXO.main()");
+         project.showTable();
     }
+    
     
 }
