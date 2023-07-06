@@ -24,11 +24,12 @@ public class SuperXO {
     
     public void checkStart() {
         System.out.println("Welcome to XO Game");
-        System.out.print("Start XO Games? (Y/N)");
+        System.out.print("Start XO Games? (Y/N) :");
         start = sc.nextLine().toLowerCase();
         if( !start.equals("y") && !start.equals("n")) {
-            System.out.print("Start XO Games? (Y/N)");
+            System.out.print("Start XO Games? (Y/N) :");
             start = sc.nextLine().toLowerCase();
+    
         }if( start.equals("n")) {
             confirm = false;
         }else {
@@ -55,10 +56,10 @@ public class SuperXO {
 
 }
     public void changeTurn() {
-        if (turn.equals("X")) {
-            turn = "O";
+        if (turn.equals("x")) {
+            turn = "o";
         } else {
-            turn = "X";
+            turn = "x";
         }
     }
         public void showTurn() {
@@ -148,18 +149,25 @@ public class SuperXO {
         }
 
     }
+    
+    public void process(){
+        showTurn();
+      inputRowandColumn();
+           showTable();
+           changeTurn();
+           
+    }
 
     public static void main(String[] args) {
         SuperXO project = new SuperXO();
         System.out.println("com.mycompany.superxo.SuperXO.main()");
-        project.turn = "x";
+ project.turn="x";
         project.checkStart();
         if(project.confirm == false) {
             System.out.println("Goodbye!!");
         }
         while (!project.isEnd) {
-            project.inputRowandColumn();
-            project.showTable();
+         project.process();
         }
     }
 
