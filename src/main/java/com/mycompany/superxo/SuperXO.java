@@ -112,7 +112,7 @@ public class SuperXO {
             System.out.println("GoodBye!!");
             return false;
         }
-       
+
         return true;
     }
 
@@ -124,8 +124,7 @@ public class SuperXO {
         if (((row > 0 && row < 4) && (column > 0 && column < 4))) {
             if (list[row - 1][column - 1].equals("-")) {
                 list[row - 1][column - 1] = turn.toUpperCase();
-                checkWin();
-                showTable();
+
             } else {
 
                 while ((!(row > 0 && row < 4) && !(column > 0 && column < 4)) && (!list[row - 1][column - 1].equals("-"))) {
@@ -136,11 +135,12 @@ public class SuperXO {
                     System.out.print("Input column :");
                     column = sc.nextInt();
                 }
-                list[row - 1][column - 1] = turn.toUpperCase();
-                checkWin();
-                showTable();
+                return;
+
             }
 
+            checkWin();
+            changeTurn();
         } else {
             return;
         }
@@ -176,10 +176,12 @@ public class SuperXO {
             System.out.println("+--------------------+");
             System.out.println("|    !!! " + turn.toUpperCase() + " Win !!!   |");
             System.out.println("+--------------------+");
+            showTable();
             if (continute()) {
                 reset();
             } else {
                 isEnd = true;
+
             }
         }
         //check 3 style
@@ -189,11 +191,12 @@ public class SuperXO {
                 System.out.println("+--------------------+");
                 System.out.println("|    !!! Draw !!!    |");
                 System.out.println("+--------------------+");
-
+                showTable();
                 if (continute()) {
                     reset();
                 } else {
                     isEnd = true;
+
                 }
             }
         }
@@ -202,8 +205,8 @@ public class SuperXO {
 
     public void process() {
         showTurn();
+        showTable();
         inputRowandColumn();
-        changeTurn();
 
     }
 
