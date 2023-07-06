@@ -21,10 +21,21 @@ public class SuperXO {
     public boolean isEnd = false;
 
     Scanner sc = new Scanner(System.in);
+    
+    public void checkStart() {
+        System.out.println("Welcome to XO Game");
+        System.out.print("Start XO Games? (Y/N)");
+        start = sc.next().toUpperCase();
+        if( start.equals("Y")) {
+            System.out.println("Nobody is prefect");
+        }else {
+            System.out.print("Bye");
+        }
+    }
 
     public static void main(String[] args) {
          SuperXO project = new SuperXO();
-         System.out.println("com.mycompany.superxo.SuperXO.main()");
+         project.checkStart();
     }
     
 }
