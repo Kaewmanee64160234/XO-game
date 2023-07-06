@@ -42,6 +42,29 @@ public class SuperXO {
         System.out.println("--------------------------------");
         System.out.println("Turn >>> " + turn.toUpperCase());
     }
+        
+        public void reset() {
+        for (int i = 0; i < list.length; i++) {
+            for (int j = 0; j < list.length; j++) {
+                list[i][j] = "-";
+            }
+        }
+    }
+            
+        public boolean continute() {
+        System.out.print("You want to play again (Y/N) : ");
+        String str = sc.next();
+        while (!str.toLowerCase().equals("n") && !str.toLowerCase().equals("y")) {
+            System.out.print("You want to play again (Y/N) : ");
+            str = sc.next();
+        }
+        if (str.equals("n")) {
+            isEnd = true;
+            System.out.println("GoodBye!!");
+            return false;
+        }
+        return true;
+    }
     
     public static void main(String[] args) {
          SuperXO project = new SuperXO();
