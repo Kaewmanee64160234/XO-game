@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- *m
+ * m
+ *
  * @author USER
  */
 public class SuperXO {
@@ -24,23 +25,18 @@ public class SuperXO {
 
     public void checkStart() {
         System.out.println("Welcome to XO Game");
-
         System.out.print("Start XO Games? (Y/N) : ");
         start = sc.nextLine().toLowerCase();
         while (!start.equals("y") && !start.equals("n")) {
-            System.out.print("Start XO Games? (Y/N)");
-        
-        }if( start.equals("n")) {
+            System.out.print("Start XO Games? (Y/N) : ");
+            start = sc.nextLine().toLowerCase();
+        }
+        if (start.equals("n")) {
             confirm = false;
-        }else {
-           confirm = true;
+        } else {
+            confirm = true;
         }
-            if (start.equals("n")) {
-                confirm = false;
-            } else {
-                confirm = true;
-            }
-        }
+    }
 
     public boolean checkNawTang() {
         for (int i = 0; i < list[row - 1].length; i++) {
@@ -49,6 +45,27 @@ public class SuperXO {
             }
         }
         return true;
+    }
+
+    public boolean checkTayang() {
+        if (row - 1 == column - 1) {
+            for (int i = 0; i < list.length; i++) {
+                if (!list[i][i].toLowerCase().equals(turn)) {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+        if ((row + column) - 2 == list.length - 1) {
+            for (int i = 0; i < list.length; i++) {
+                if (!list[i][list.length - 1 - i].toLowerCase().equals(turn)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     public void showTable() {
@@ -167,19 +184,17 @@ public class SuperXO {
         }
 
     }
-    
-    public void process(){
-            showTurn();
-            inputRowandColumn();
-           showTable();
-           changeTurn();
-           
+
+    public void process() {
+        showTurn();
+        inputRowandColumn();
+        showTable();
+        changeTurn();
+
     }
 
     public static void main(String[] args) {
         SuperXO project = new SuperXO();
-        System.out.println("com.mycompany.superxo.SuperXO.main()");
-
         project.turn = "x";
 
         project.checkStart();
@@ -188,7 +203,7 @@ public class SuperXO {
             project.isEnd = true;
         }
         while (!project.isEnd) {
-         project.process();
+            project.process();
         }
     }
 
