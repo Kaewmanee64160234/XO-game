@@ -30,6 +30,18 @@ public class SuperXO {
                 System.out.println();
             }
 }
+    public void changeTurn() {
+        if (turn.equals("X")) {
+            turn = "O";
+        } else {
+            turn = "X";
+        }
+    }
+    
+        public void showTurn() {
+        System.out.println("--------------------------------");
+        System.out.println("Turn >>> " + turn.toUpperCase());
+    }
     
     public static void main(String[] args) {
          SuperXO project = new SuperXO();
