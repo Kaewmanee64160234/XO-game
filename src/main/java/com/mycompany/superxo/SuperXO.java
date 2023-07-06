@@ -24,5 +24,7 @@ public class SuperXO {
 
     public static void main(String[] args) {
          SuperXO project = new SuperXO();
+         System.out.println("com.mycompany.superxo.SuperXO.main()");
     }
+    
 }
