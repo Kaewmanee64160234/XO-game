@@ -35,15 +35,25 @@ public class SuperXO {
     }
     
     public void checkNawTang() {
-        for(int i = 0;i<list.length;i++) {
-            System.out.println(list[i]);
+        for(int i = 0; i<list.length;i++) {
         }
     }
 
+    public void showTable(){
+            for (int i = 0; i < list.length; i++) {
+                for (int j = 0; j < list[i].length; j++) {
+                    System.out.print(" "+list[i][j] + " ");
+                }
+                System.out.println();
+            }
+}
+    
     public static void main(String[] args) {
          SuperXO project = new SuperXO();
          project.checkStart();
+         project.showTable();
          project.checkNawTang();
     }
+    
     
 }
