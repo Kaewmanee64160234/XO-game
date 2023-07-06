@@ -26,8 +26,27 @@ public class SuperXO {
             for (int j = 0; j < list[i].length; j++) {
                 System.out.print(" " + list[i][j] + " ");
             }
+
             System.out.println();
         }
+
+}
+    public void changeTurn() {
+        if (turn.equals("X")) {
+            turn = "O";
+        } else {
+            turn = "X";
+        }
+    }
+    
+        public void showTurn() {
+        System.out.println("--------------------------------");
+        System.out.println("Turn >>> " + turn.toUpperCase());
+    }
+    
+    public static void main(String[] args) {
+         SuperXO project = new SuperXO();
+         project.showTable();
     }
 
     public void inputRowandColumn() {
