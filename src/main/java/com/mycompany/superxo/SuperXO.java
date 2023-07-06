@@ -7,7 +7,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- *m
+ * m
+ *
  * @author USER
  */
 public class SuperXO {
@@ -21,28 +22,29 @@ public class SuperXO {
     public boolean isEnd = false;
 
     Scanner sc = new Scanner(System.in);
-    
+
     public void checkStart() {
         System.out.println("Welcome to XO Game");
 
         System.out.print("Start XO Games? (Y/N) : ");
         start = sc.nextLine().toLowerCase();
-        if( !start.equals("y") && !start.equals("n")) {
+        if (!start.equals("y") && !start.equals("n")) {
             System.out.print("Start XO Games? (Y/N) : ");
 
             start = sc.nextLine().toLowerCase();
-    
-        }if( start.equals("n")) {
+
+        }
+        if (start.equals("n")) {
             confirm = false;
-        }else {
-           confirm = true;
+        } else {
+            confirm = true;
         }
     }
-    
+
     public void checkNawTang() {
-        for(int i = 0; i<list.length;i++) {
-            if(list[i][column].toLowerCase().equals(turn)) {
-                
+        for (int i = 0; i < list.length; i++) {
+            if (list[i][column].toLowerCase().equals(turn)) {
+
             }
         }
     }
@@ -56,7 +58,8 @@ public class SuperXO {
             System.out.println();
         }
 
-}
+    }
+
     public void changeTurn() {
         if (turn.equals("x")) {
             turn = "o";
@@ -64,20 +67,21 @@ public class SuperXO {
             turn = "x";
         }
     }
-        public void showTurn() {
+
+    public void showTurn() {
         System.out.println("--------------------------------");
         System.out.println("Turn >>> " + turn.toUpperCase());
     }
-        
-        public void reset() {
+
+    public void reset() {
         for (int i = 0; i < list.length; i++) {
             for (int j = 0; j < list.length; j++) {
                 list[i][j] = "-";
             }
         }
     }
-            
-        public boolean continute() {
+
+    public boolean continute() {
         System.out.print("You want to play again (Y/N) : ");
         String str = sc.next();
         while (!str.toLowerCase().equals("n") && !str.toLowerCase().equals("y")) {
@@ -91,7 +95,7 @@ public class SuperXO {
         }
         return true;
     }
-    
+
     public void inputRowandColumn() {
         System.out.print("Input row :");
         row = sc.nextInt();
@@ -116,7 +120,7 @@ public class SuperXO {
             }
 
         } else {
-           
+
             return;
         }
 
@@ -146,6 +150,13 @@ public class SuperXO {
     }
 
     public void checkWin() {
+        if (checkNawnond()) {
+            isEnd = true;
+
+            System.out.println("+--------------------+");
+            System.out.println("|    !!! " + turn.toUpperCase() + " Win !!!   |");
+            System.out.println("+--------------------+");
+        }
         //check 3 style
         if (isEnd == false) {
             if (checkDraw()) {
@@ -161,13 +172,14 @@ public class SuperXO {
         }
 
     }
-    
-    public void process(){
+
+    public void process() {
         showTurn();
-      inputRowandColumn();
-           showTable();
-           changeTurn();
-           
+        inputRowandColumn();
+        checkWin();
+        showTable();
+        changeTurn();
+
     }
 
     public static void main(String[] args) {
@@ -177,11 +189,11 @@ public class SuperXO {
         project.turn = "x";
 
         project.checkStart();
-        if(project.confirm == false) {
+        if (project.confirm == false) {
             System.out.println("Goodbye!!");
         }
         while (!project.isEnd) {
-         project.process();
+            project.process();
         }
     }
 
