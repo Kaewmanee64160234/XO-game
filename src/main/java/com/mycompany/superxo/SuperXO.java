@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 /**
- *
+ *m
  * @author USER
  */
 public class SuperXO {
@@ -24,10 +24,16 @@ public class SuperXO {
 
     public void checkStart() {
         System.out.println("Welcome to XO Game");
+
         System.out.print("Start XO Games? (Y/N) : ");
         start = sc.nextLine().toLowerCase();
         while (!start.equals("y") && !start.equals("n")) {
             System.out.print("Start XO Games? (Y/N)");
+        
+        }if( start.equals("n")) {
+            confirm = false;
+        }else {
+           confirm = true;
         }
             if (start.equals("n")) {
                 confirm = false;
@@ -36,13 +42,13 @@ public class SuperXO {
             }
         }
 
-
-    public void checkNawTang() {
-        for (int i = 0; i < list.length; i++) {
-            if (list[i][column].toLowerCase().equals(turn)) {
-                System.out.println("You win");
+    public boolean checkNawTang() {
+        for (int i = 0; i < list[row - 1].length; i++) {
+            if (!list[i][column - 1].toLowerCase().equals(turn)) {
+                return false;
             }
         }
+        return true;
     }
 
     public void showTable() {
@@ -57,10 +63,10 @@ public class SuperXO {
     }
 
     public void changeTurn() {
-        if (turn.equals("X")) {
-            turn = "O";
+        if (turn.equals("x")) {
+            turn = "o";
         } else {
-            turn = "X";
+            turn = "x";
         }
     }
 
@@ -161,18 +167,28 @@ public class SuperXO {
         }
 
     }
+    
+    public void process(){
+            showTurn();
+            inputRowandColumn();
+           showTable();
+           changeTurn();
+           
+    }
 
     public static void main(String[] args) {
         SuperXO project = new SuperXO();
+        System.out.println("com.mycompany.superxo.SuperXO.main()");
+
         project.turn = "x";
+
         project.checkStart();
         if (project.confirm == false) {
             System.out.println("Goodbye!!");
             project.isEnd = true;
         }
         while (!project.isEnd) {
-            project.inputRowandColumn();
-            project.showTable();
+         project.process();
         }
     }
 
