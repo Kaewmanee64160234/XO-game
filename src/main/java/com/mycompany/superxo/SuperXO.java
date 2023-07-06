@@ -47,6 +47,27 @@ public class SuperXO {
         return true;
     }
 
+    public boolean checkTayang() {
+        if (row - 1 == column - 1) {
+            for (int i = 0; i < list.length; i++) {
+                if (!list[i][i].toLowerCase().equals(turn)) {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+        if ((row + column) - 2 == list.length - 1) {
+            for (int i = 0; i < list.length; i++) {
+                if (!list[i][list.length - 1 - i].toLowerCase().equals(turn)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     public void showTable() {
         for (int i = 0; i < list.length; i++) {
             for (int j = 0; j < list[i].length; j++) {
@@ -150,7 +171,7 @@ public class SuperXO {
     }
 
     public void checkWin() {
-        if (checkNawnond() || checkNawTang()) {
+        if (checkNawnond() || checkNawTang() || checkTayang()) {
 
             System.out.println("+--------------------+");
             System.out.println("|    !!! " + turn.toUpperCase() + " Win !!!   |");
@@ -182,15 +203,12 @@ public class SuperXO {
     public void process() {
         showTurn();
         inputRowandColumn();
-
         changeTurn();
 
     }
 
     public static void main(String[] args) {
         SuperXO project = new SuperXO();
-        System.out.println("com.mycompany.superxo.SuperXO.main()");
-
         project.turn = "x";
 
         project.checkStart();
