@@ -4,6 +4,7 @@
 
 package com.mycompany.superxo;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -32,10 +33,17 @@ public class SuperXO {
             System.out.print("Bye");
         }
     }
+    
+    public void checkNawTang() {
+        for(int i = 0;i<list.length;i++) {
+            System.out.println(list[i]);
+        }
+    }
 
     public static void main(String[] args) {
          SuperXO project = new SuperXO();
          project.checkStart();
+         project.checkNawTang();
     }
     
 }
