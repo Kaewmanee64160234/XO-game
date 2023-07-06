@@ -25,14 +25,11 @@ public class SuperXO {
 
     public void checkStart() {
         System.out.println("Welcome to XO Game");
-
         System.out.print("Start XO Games? (Y/N) : ");
         start = sc.nextLine().toLowerCase();
-        if (!start.equals("y") && !start.equals("n")) {
+        while (!start.equals("y") && !start.equals("n")) {
             System.out.print("Start XO Games? (Y/N) : ");
-
             start = sc.nextLine().toLowerCase();
-
         }
         if (start.equals("n")) {
             confirm = false;
@@ -41,12 +38,13 @@ public class SuperXO {
         }
     }
 
-    public void checkNawTang() {
-        for (int i = 0; i < list.length; i++) {
-            if (list[i][column].toLowerCase().equals(turn)) {
-
+    public boolean checkNawTang() {
+        for (int i = 0; i < list[row - 1].length; i++) {
+            if (!list[i][column - 1].toLowerCase().equals(turn)) {
+                return false;
             }
         }
+        return true;
     }
 
     public void showTable() {
@@ -86,13 +84,14 @@ public class SuperXO {
         String str = sc.next();
         while (!str.toLowerCase().equals("n") && !str.toLowerCase().equals("y")) {
             System.out.print("You want to play again (Y/N) : ");
-            str = sc.next();
+            str = sc.next().toLowerCase();
         }
         if (str.equals("n")) {
             isEnd = true;
             System.out.println("GoodBye!!");
             return false;
         }
+       
         return true;
     }
 
@@ -104,7 +103,8 @@ public class SuperXO {
         if (((row > 0 && row < 4) && (column > 0 && column < 4))) {
             if (list[row - 1][column - 1].equals("-")) {
                 list[row - 1][column - 1] = turn.toUpperCase();
-
+                checkWin();
+                showTable();
             } else {
 
                 while ((!(row > 0 && row < 4) && !(column > 0 && column < 4)) && (!list[row - 1][column - 1].equals("-"))) {
@@ -116,11 +116,11 @@ public class SuperXO {
                     column = sc.nextInt();
                 }
                 list[row - 1][column - 1] = turn.toUpperCase();
-
+                checkWin();
+                showTable();
             }
 
         } else {
-
             return;
         }
 
@@ -150,12 +150,16 @@ public class SuperXO {
     }
 
     public void checkWin() {
-        if (checkNawnond()) {
-            isEnd = true;
+        if (checkNawnond() || checkNawTang()) {
 
             System.out.println("+--------------------+");
             System.out.println("|    !!! " + turn.toUpperCase() + " Win !!!   |");
             System.out.println("+--------------------+");
+            if (continute()) {
+                reset();
+            } else {
+                isEnd = true;
+            }
         }
         //check 3 style
         if (isEnd == false) {
@@ -164,10 +168,12 @@ public class SuperXO {
                 System.out.println("+--------------------+");
                 System.out.println("|    !!! Draw !!!    |");
                 System.out.println("+--------------------+");
-                // show table
-                // ask to contonue
-//                if(continute = true) => reset
-//                else is end = true
+
+                if (continute()) {
+                    reset();
+                } else {
+                    isEnd = true;
+                }
             }
         }
 
@@ -176,8 +182,7 @@ public class SuperXO {
     public void process() {
         showTurn();
         inputRowandColumn();
-        checkWin();
-        showTable();
+
         changeTurn();
 
     }
@@ -191,6 +196,7 @@ public class SuperXO {
         project.checkStart();
         if (project.confirm == false) {
             System.out.println("Goodbye!!");
+            project.isEnd = true;
         }
         while (!project.isEnd) {
             project.process();
